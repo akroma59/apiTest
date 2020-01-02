@@ -16,7 +16,11 @@ security:
             security: false
         main:
             anonymous: lazy
-        
+
+        register:
+            pattern:  ^/api/register
+            stateless: true
+            anonymous: true
         api:
             pattern: ^/api
             provider: app_user_provider
@@ -38,3 +42,4 @@ security:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
         - { path: ^/api,            roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/api/register,   roles: IS_AUTHENTICATED_ANONYMOUSLY }
