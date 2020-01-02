@@ -16,6 +16,15 @@ security:
             security: false
         main:
             anonymous: lazy
+        
+        api:
+            pattern: ^/api
+            provider: app_user_provider
+            stateless: true
+            anonymous: false
+            guard:
+                authenticators:
+                    - lexik_jwt_authentication.jwt_token_authenticator
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
@@ -28,3 +37,4 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/api,            roles: IS_AUTHENTICATED_FULLY }
